@@ -1,0 +1,10 @@
+# example of 2-way ANOVA
+mu.0 <- rep(50,12)
+mu.A <- c(rep(-10,6),rep(10,6))
+mu.B <- rep(c(-5,0,5),4)
+A <- as.factor(c(rep("A1",6),rep("A2",6)))
+B <- as.factor(rep(c("B1","B2","B3"),4))
+y <- mu.0 + mu.A + mu.B + rnorm(12,mean=0,sd=10)
+result <- lm(y ~ A + B + A*B)
+summary(result)
+anova(result)
