@@ -13,11 +13,8 @@ mean(x)
 
 # error of the average value
 n <- 10
-saved <- c()
-for (i in 1:10000){
-   x <- rnorm(n, mean=mu, sd=stdev)
-   saved <- c(saved, mean(x))
-}
+data <- replicate(10000,rnorm(n,mean=mu,sd=stdev))
+smean <- apply(data, 2, mean)
 
 plot.normal <- function(y){
    h <- hist(y, plot=FALSE)
@@ -26,6 +23,6 @@ plot.normal <- function(y){
    lines(x = xlines,y=dnorm(xlines,mean(y),sd(y)) *length(y)*diff(h$breaks)[1])
 }
 
-mean(saved)
-var(saved)
-plot.normal(saved)
+mean(smean)
+var(smean)
+plot.normal(smean)
