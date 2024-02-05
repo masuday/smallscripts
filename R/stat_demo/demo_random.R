@@ -1,3 +1,12 @@
+# random samples
+sample(c(1,2,3,4,5))
+sample(c(1,2,3,4,5), 3)
+sample(c(1,2,3,4,5), 3, replace=TRUE)
+sample(c(1,2,3,4,5), 10, replace=TRUE)
+sample(c(1,2,3,4,5), 10, replace=TRUE, prob=c(0.1,0.1,0.1,0.1,0.6))
+
+# ------------------------
+
 # uniform random numbers
 runif(1)
 runif(2)
