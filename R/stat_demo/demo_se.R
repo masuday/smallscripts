@@ -25,4 +25,5 @@ plot.normal <- function(y){
 
 mean(smean)
 var(smean)
+hist(smean)
 plot.normal(smean)
