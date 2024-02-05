@@ -1,6 +1,11 @@
 # random samples
+# shuffle
 sample(c(1,2,3,4,5))
+
+# sampling without replacement
 sample(c(1,2,3,4,5), 3)
+
+# sampling with replacement
 sample(c(1,2,3,4,5), 3, replace=TRUE)
 sample(c(1,2,3,4,5), 10, replace=TRUE)
 sample(c(1,2,3,4,5), 10, replace=TRUE, prob=c(0.1,0.1,0.1,0.1,0.6))
