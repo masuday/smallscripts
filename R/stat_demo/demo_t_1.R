@@ -50,6 +50,8 @@ n <- 8
 y <- rnorm(n, mean=mu,sd=stdev)
 mean(y)
 se <- sd(y)/sqrt(n)
+# or
+# se <- sqrt(var(y)/n)
 
 # 95% confidential interval
 k <- qt(0.975, df=n-1)
