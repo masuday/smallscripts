@@ -12,4 +12,5 @@ EFFECT
  2 cov
 EFFECT
  3 cov
-OPTION method FSPAK
+OPTION method BLUP
+OPTION solv_method FSPAK

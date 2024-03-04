@@ -10,4 +10,5 @@ RESIDUAL_VARIANCE
  1.0
 EFFECT
  3 cross alpha
-OPTION method FSPAK
+OPTION method BLUP
+OPTION solv_method FSPAK
