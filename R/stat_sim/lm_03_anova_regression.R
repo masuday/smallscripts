@@ -28,6 +28,7 @@ X <- model.matrix(~ x)
 LHS <- crossprod(X)
 RHS <- crossprod(X,y)
 b <- solve(LHS,RHS)
+b
 
 #
 # ANOVA
@@ -69,6 +70,12 @@ MSRm <- SSRm/dfr
 MSE <- SSE/dfe
 F <- MSRm/MSE
 pval <- 1 - pf(F,dfr,dfe)
+
+# coefficient of determination (R^2)
+R2 <- SSRm/SSTm
+# Confirm plots: plot(x,y); points(x,yhat,col="blue",pch=19)
+# Confirm R2 = cor(y,yhat)^2 in this case.
+# Note: It is the case for a single regression model.
 
 #
 # data frame
