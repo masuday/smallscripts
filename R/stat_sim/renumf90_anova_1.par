@@ -1,5 +1,5 @@
 DATAFILE
- anova_1.txt
+ data_anova_1.txt
 TRAITS
  1
 FIELDS_PASSED TO OUTPUT
@@ -9,5 +9,5 @@ WEIGHT(S)
 RESIDUAL_VARIANCE
  1.0
 EFFECT
- 2 cross alpha
+ 3 cross alpha
 OPTION method FSPAK

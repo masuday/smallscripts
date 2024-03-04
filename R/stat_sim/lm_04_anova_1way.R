@@ -118,5 +118,5 @@ pval <- 1 - pf(F,dfr,dfe)
 #
 # data frame
 #
-df <- data.frame(y=y, a=a)
-write.table(df, file="anova_1.txt", row.names=FALSE, col.names=FALSE, quote=FALSE)
+df <- data.frame(y=y, x0=X0, a=a)
+write.table(df, file="data_anova_1.txt", row.names=FALSE, col.names=FALSE, quote=FALSE)
