@@ -77,6 +77,12 @@ R2 <- SSRm/SSTm
 # Confirm R2 = cor(y,yhat)^2 in this case.
 # Note: It is the case for a single regression model.
 
+# standard error
+vehat <- MSE[1,1]
+se <- sqrt(diag(solve(crossprod(X)) * vehat))
+tval <- b/se
+pval <- 2*(1 - pt(tval,n-qr(X)$rank))
+
 #
 # data frame
 #
