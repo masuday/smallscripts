@@ -115,6 +115,12 @@ MSE <- SSE/dfe
 F <- MSRm/MSE
 pval <- 1 - pf(F,dfr,dfe)
 
+# standard error
+vehat <- MSE[1,1]
+se <- sqrt(diag(solve(crossprod(X)) * vehat))
+tval <- b/se
+pval <- 2*(1 - pt(tval,N-qr(X)$rank))
+
 #
 # data frame
 #
