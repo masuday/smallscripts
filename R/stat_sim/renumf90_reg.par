@@ -14,3 +14,4 @@ EFFECT
  3 cov
 OPTION method BLUP
 OPTION solv_method FSPAK
+OPTION sol se

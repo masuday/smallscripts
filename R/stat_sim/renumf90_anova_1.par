@@ -12,3 +12,4 @@ EFFECT
  3 cross alpha
 OPTION method BLUP
 OPTION solv_method FSPAK
+OPTION sol se
