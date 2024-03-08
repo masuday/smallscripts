@@ -1,0 +1,17 @@
+DATAFILE
+ data_anova_2_unbalanced.txt
+TRAITS
+ 1
+FIELDS_PASSED TO OUTPUT
+
+WEIGHT(S)
+
+RESIDUAL_VARIANCE
+ 1.0
+EFFECT
+ 3 cross alpha
+EFFECT
+ 4 cross alpha
+OPTION method BLUP
+OPTION solv_method FSPAK
+OPTION sol se
