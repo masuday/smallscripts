@@ -2,24 +2,22 @@
 # balanced 1-way anova model
 # --------------------------
 #
-set.seed(123)
+set.seed(12345)
+N <- 30
 n <- 10
 na <- 3
-mu <- c(50,60,70)
+mu <- 0
+eff.A <- c(50,60,70)
 ve <- 100
 stde <- sqrt(ve)
 
-y1 <- rnorm(n,mean=mu[1],sd=stde)
-y2 <- rnorm(n,mean=mu[2],sd=stde)
-y3 <- rnorm(n,mean=mu[3],sd=stde)
-y <- c(y1,y2,y3)
+A <- as.factor(sort(rep(1:na,length.out=N)))
+m <- eff.A[A]
+e <- rnorm(N,mean=0,sd=stde)
 
-a1 <- as.factor(rep("1",n))
-a2 <- as.factor(rep("2",n))
-a3 <- as.factor(rep("3",n))
-a <- c(a1,a2,a3)
+y <- mu + m + e
 
-result <- lm(y ~ a)
+result <- lm(y ~ A)
 
 result
 summary(result)
@@ -30,19 +28,19 @@ anova(result)
 #
 # some contrasts
 options("contrasts")
-model.matrix(~ a)
-model.matrix(~ a, contrasts.arg = list(a = "contr.treatment"))
-model.matrix(~ a, contrasts.arg = list(a = "contr.sum"))
-model.matrix(~ a, contrasts.arg = list(a = "contr.SAS"))
-model.matrix(~ a, contrasts.arg = list(a = "contr.helmert"))
-model.matrix(~ a, contrasts.arg = list(a = "contr.poly"))
+model.matrix(~ A)
+model.matrix(~ A, contrasts.arg = list(A = "contr.treatment"))
+model.matrix(~ A, contrasts.arg = list(A = "contr.sum"))
+model.matrix(~ A, contrasts.arg = list(A = "contr.SAS"))
+model.matrix(~ A, contrasts.arg = list(A = "contr.helmert"))
+model.matrix(~ A, contrasts.arg = list(A = "contr.poly"))
 # no contrasts
-model.matrix(~ a, contrasts.arg = list(a = contrasts(a, contrasts=FALSE)))
+model.matrix(~ A, contrasts.arg = list(A = contrasts(A, contrasts=FALSE)))
 
 #
 # normal equations with the default contrast
 #
-X <- model.matrix(~ a)
+X <- model.matrix(~ A)
 LHS <- crossprod(X)
 RHS <- crossprod(X,y)
 b <- solve(LHS,RHS)
@@ -54,7 +52,7 @@ b[1]+b[3]
 #
 # normal equation with no contrasts
 #
-W <- model.matrix(~ a, contrasts.arg = list(a = contrasts(a, contrasts=FALSE)))
+W <- model.matrix(~ A, contrasts.arg = list(A = contrasts(A, contrasts=FALSE)))
 LHS.1 <- crossprod(W)
 RHS.1 <- crossprod(W,y)
 # Confirm the in failure b.1 <- solve(LHS,RHS)
@@ -89,7 +87,7 @@ SSTm <- crossprod(ym)
 # Confirm SSTm = SST - SSM
 
 # sum of squares due to model (SSR)
-X <- model.matrix(y ~ a)
+X <- model.matrix(y ~ A)
 LHS <- crossprod(X)
 RHS <- crossprod(X,y)
 b <- solve(LHS,RHS)
@@ -124,5 +122,5 @@ pval <- 2*(1 - pt(tval,N-qr(X)$rank))
 #
 # data frame
 #
-df <- data.frame(y=y, x0=X0, a=a)
+df <- data.frame(y=y, x0=X0, A=A)
 write.table(df, file="data_anova_1.txt", row.names=FALSE, col.names=FALSE, quote=FALSE)
