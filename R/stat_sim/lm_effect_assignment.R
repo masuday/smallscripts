@@ -17,7 +17,7 @@ x <- sample(1:5, n, TRUE)
 # b0, b1: pre-defined regression coefficients
 b0 <- 1.5
 b1 <- 2.0
-m <- 
+m <- b0 + b1*x
 
 # e: random error (normal distribution)
 e <- rnorm(n, mean=0, sd=10)
@@ -42,3 +42,9 @@ a <- as.factor(sample(1:nlev, n, TRUE))
 
 # effect size
 m <- eff[a]
+
+# e: random error (normal distribution)
+e <- rnorm(n, mean=0, sd=10)
+
+# observation
+y <- m + e
