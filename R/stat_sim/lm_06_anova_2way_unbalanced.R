@@ -88,10 +88,15 @@ SSRm3.B <- get_ssr(y ~ A + B) - get_ssr(y ~ A)
 #anova_type3(y ~ A + B)
 
 # standard error
+X <- model.matrix(~ A + B)
+result <- lm(y ~ A + B)
+ehat <- y - predict(result)
+sse <- crossprod(ehat)
+MSE <- sse/(N-qr(result)$rank)
 vehat <- MSE[1,1]
 se <- sqrt(diag(solve(crossprod(X)) * vehat))
 tval <- b/se
-pval <- 2*(1 - pt(tval,N-qr(X)$rank))
+pval <- 2*(1 - pt(tval,N-qr(result)$rank))
 
 #
 # data frame
