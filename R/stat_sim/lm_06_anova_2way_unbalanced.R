@@ -79,13 +79,13 @@ SSRm3.A <- get_ssr(y ~ A + B) - get_ssr(y ~ B)
 SSRm3.B <- get_ssr(y ~ A + B) - get_ssr(y ~ A)
 
 # library(car)
-anova_type3 <- function(m){
-   contr.orig <- options("contrasts")
-   options(contrasts = c("contr.sum","contr.poly"))
-   print( Anova(lm(y ~ A + B), type=3) )
-   options(contr.orig)
-}
-anova_type3(y ~ A + B)
+#anova_type3 <- function(m){
+#   contr.orig <- options("contrasts")
+#   options(contrasts = c("contr.sum","contr.poly"))
+#   print( Anova(lm(m), type=3) )
+#   options(contr.orig)
+#}
+#anova_type3(y ~ A + B)
 
 # standard error
 vehat <- MSE[1,1]
