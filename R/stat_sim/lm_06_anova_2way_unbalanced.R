@@ -89,8 +89,11 @@ SSRm3.B <- get_ssr(y ~ A + B) - get_ssr(y ~ A)
 
 # standard error
 X <- model.matrix(~ A + B)
+LHS <- crossprod(X)
+RHS <- crossprod(X,y)
+b <- solve(LHS,RHS)
 result <- lm(y ~ A + B)
-ehat <- y - predict(result)
+ehat <- y - crossprod(X,b)
 sse <- crossprod(ehat)
 MSE <- sse/(N-qr(result)$rank)
 vehat <- MSE[1,1]
