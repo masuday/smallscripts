@@ -93,7 +93,7 @@ LHS <- crossprod(X)
 RHS <- crossprod(X,y)
 b <- solve(LHS,RHS)
 result <- lm(y ~ A + B)
-ehat <- y - crossprod(X,b)
+ehat <- y - predict(result)
 sse <- crossprod(ehat)
 MSE <- sse/(N-qr(result)$rank)
 vehat <- MSE[1,1]
