@@ -88,6 +88,7 @@ SSRm3.B <- get_ssr(y ~ A + B) - get_ssr(y ~ A)
 #anova_type3(y ~ A + B)
 
 # standard error
+X0 <- model.matrix(y ~ 1)
 X <- model.matrix(~ A + B)
 LHS <- crossprod(X)
 RHS <- crossprod(X,y)
