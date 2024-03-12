@@ -84,19 +84,23 @@ SSRm3.A <- get_ssr(y ~ A + B) - get_ssr(y ~ B)
 SSRm3.B <- get_ssr(y ~ A + B) - get_ssr(y ~ A)
 
 # simpler expression
+# options(contrasts = c("contr.sum","contr.poly"))
 # equivalent to SSRm3.A
 anova(lm(y ~ B), lm(y ~ A + B))
 # equivalent to SSRm3.B
 anova(lm(y ~ A), lm(y ~ A + B))
+# options(contrasts = c("contr.treatment","contr.poly"))
 
+# another method
+# --------------
 # library(car)
-#anova_type3 <- function(m){
+# anova_type3 <- function(m){
 #   contr.orig <- options("contrasts")
 #   options(contrasts = c("contr.sum","contr.poly"))
 #   print( Anova(lm(m), type=3) )
 #   options(contr.orig)
-#}
-#anova_type3(y ~ A + B)
+# }
+# anova_type3(y ~ A + B)
 
 # standard error
 X0 <- model.matrix(y ~ 1)
