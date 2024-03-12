@@ -70,6 +70,11 @@ SSRm1.mu2 <- get_ssr(y ~ 1)
 SSRm1.B2 <- get_ssr(y ~ 1 + B) - SSRm1.mu2
 SSRm1.A2 <- get_ssr(y ~ 1 + B + A) - SSRm1.B2 - SSRm1.mu2
 
+# simpler expression
+# equivalent to SSRm1.A1
+anova(lm(y ~ 1), lm(y ~ A))
+# equivalent to SSRm1.B1
+anova(lm(y ~ A), lm(y ~ A + B))
 
 # Type III SS: full model reduction
 # NOTE: See Searle (1987) with interaction effects
@@ -77,6 +82,12 @@ SSRm1.A2 <- get_ssr(y ~ 1 + B + A) - SSRm1.B2 - SSRm1.mu2
 # SSRm.B: R(mu,A|B) = R(mu,A,B) - R(mu,A)
 SSRm3.A <- get_ssr(y ~ A + B) - get_ssr(y ~ B)
 SSRm3.B <- get_ssr(y ~ A + B) - get_ssr(y ~ A)
+
+# simpler expression
+# equivalent to SSRm3.A
+anova(lm(y ~ B), lm(y ~ A + B))
+# equivalent to SSRm3.B
+anova(lm(y ~ A), lm(y ~ A + B))
 
 # library(car)
 #anova_type3 <- function(m){
