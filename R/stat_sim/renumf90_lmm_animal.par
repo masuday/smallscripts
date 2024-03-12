@@ -1,0 +1,27 @@
+DATAFILE
+ data_lmm_animal.txt
+TRAITS
+ 1
+FIELDS_PASSED TO OUTPUT
+
+WEIGHT(S)
+
+RESIDUAL_VARIANCE
+ 64.0
+EFFECT
+ 3 cross alpha
+EFFECT
+ 4 cross alpha
+RANDOM
+ animal
+FILE
+ ped_lmm_animal.txt
+PED_DEPTH
+ 100
+INBREEDING
+ pedigree
+(CO)VARIANCES
+ 36.0
+OPTION method BLUP
+OPTION solv_method FSPAK
+OPTION sol se
