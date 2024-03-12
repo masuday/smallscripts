@@ -86,7 +86,7 @@ blupf90_pedigree <- function(ped,f){
       b <- round(4000/((1+ms)*(1-fs)+(1+md)*(1-fd)))
       inbcode <- c(inbcode,b)
    }
-   df <- data.frame(aid=aid,sid=sid,did=did,inbcode=inbcode)
+   df <- data.frame(aid=aid,sid=sid,did=did,inbcode=inbcode,f=f)
    return(df)
 }
 
