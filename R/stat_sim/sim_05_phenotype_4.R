@@ -74,33 +74,3 @@ for(curr_gen in 1:maxgen){
    ped <- pedigree(label=1:n, sire=sire, dam=dam)
    f <- inbreeding(ped)
 }
-
-#
-# data frame
-#
-blupf90_pedigree <- function(ped,f){
-   n <- length(ped@label)
-   aid <- c()
-   sid <- c()
-   did <- c()
-   inbcode <- c()
-   for(i in 1:n){
-      aid <- c(aid,i)
-      sid <- c(sid,ifelse(is.na(ped@sire[i]),0,ped@sire[i]))
-      did <- c(did,ifelse(is.na(ped@dam[i]),0,ped@dam[i]))
-      ms <- ifelse(is.na(ped@sire[i]),1,0)
-      md <- ifelse(is.na(ped@dam[i]),1,0)
-      fs <- ifelse(is.na(ped@sire[i]),0,f[ped@sire[i]])
-      fd <- ifelse(is.na(ped@dam[i]),0,f[ped@dam[i]])
-      b <- round(4000/((1+ms)*(1-fs)+(1+md)*(1-fd)))
-      inbcode <- c(inbcode,b)
-   }
-   df <- data.frame(aid=aid,sid=sid,did=did,inbcode=inbcode)
-   return(df)
-}
-nanim = length(y)
-X0 <- model.matrix(y ~ 1)
-df <- data.frame(y=y, x0=X0, H=H, id=1:nanim, u=u, e=e)
-write.table(df, file="data.txt", row.names=FALSE, col.names=FALSE, quote=FALSE)
-df.ped <- blupf90_pedigree(ped,f)
-write.table(df.ped, file="ped.txt", row.names=FALSE, col.names=FALSE, quote=FALSE)
