@@ -36,7 +36,8 @@ ns <- ncol(A)
 
 # random effects
 # phenotypes only for animals 3 - 7
-u <- t(chol(A)) %*% rnorm(ns,mean=0,sd=stdu)
+# u = chol(A) * z * stdu
+u <- t(chol(A)) %*% rnorm(ns,mean=0,sd=1)*stdu
 S <- as.factor(3:7)
 Z <- cbind(matrix(0,nrow=5,ncol=2), diag(5))
 
