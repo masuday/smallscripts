@@ -4,7 +4,7 @@
 #
 set.seed(123456)
 N <- 40
-na <- 4
+nf <- 4
 ns <- 10
 vs <- 36
 ve <- 64
@@ -13,7 +13,7 @@ stde <- sqrt(ve)
 
 # fixed effects
 b <- c(50,60,70,80)
-F <- as.factor(rep(1:na,length.out=N))
+F <- as.factor(rep(1:nf,length.out=N))
 X <- model.matrix(~ 0 + F)
 
 # random effects
@@ -41,13 +41,13 @@ RHS <- rbind(
 )
 sol <- solve(LHS,RHS)
 
-b.hat <- sol[1:na]
-u.hat <- sol[(na+1):(na+ns)]
+b.hat <- sol[1:nf]
+u.hat <- sol[(nf+1):(nf+ns)]
 
 # SE for BLUE and PEV for BLUP
 sepev <- sqrt(diag(solve(LHS))*ve)
-se <- sepev[1:na]
-pev <- sepev[(na+1):(na+ns)]
+se <- sepev[1:nf]
+pev <- sepev[(nf+1):(nf+ns)]
 
 #
 # full MME

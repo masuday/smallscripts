@@ -4,7 +4,7 @@
 #
 set.seed(123456)
 N <- 40
-na <- 4
+nf <- 4
 ns <- 10
 vs <- 36
 ve <- 64
@@ -13,7 +13,7 @@ stde <- sqrt(ve)
 
 # fixed effects
 b <- c(50,60,70,80)
-F <- as.factor(rep(1:na,length.out=N))
+F <- as.factor(rep(1:nf,length.out=N))
 X <- model.matrix(~ 0 + F)
 
 # random effects
