@@ -84,12 +84,15 @@ SSRm3.A <- get_ssr(y ~ A + B) - get_ssr(y ~ B)
 SSRm3.B <- get_ssr(y ~ A + B) - get_ssr(y ~ A)
 
 # simpler expression
-# options(contrasts = c("contr.sum","contr.poly"))
+# with sigma-constraint contrast
+options(contrasts = c("contr.sum","contr.poly"))
+# -----------------------------
 # equivalent to SSRm3.A
 anova(lm(y ~ B), lm(y ~ A + B))
 # equivalent to SSRm3.B
 anova(lm(y ~ A), lm(y ~ A + B))
-# options(contrasts = c("contr.treatment","contr.poly"))
+# -----------------------------
+options(contrasts = c("contr.treatment","contr.poly"))
 
 # another method
 # --------------
