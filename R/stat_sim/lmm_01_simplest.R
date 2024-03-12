@@ -13,8 +13,8 @@ stde <- sqrt(ve)
 
 # fixed effects
 b <- c(50,60,70,80)
-A <- as.factor(rep(1:na,length.out=N))
-X <- model.matrix(~ 0 + A)
+F <- as.factor(rep(1:na,length.out=N))
+X <- model.matrix(~ 0 + F)
 
 # random effects
 u <- rnorm(ns,mean=0,sd=stds)
@@ -91,5 +91,5 @@ u.blup <- tcrossprod(G,Z) %*% Vinv %*% (y - X %*% b.gls)
 # data frame
 #
 X0 <- model.matrix(y ~ 1)
-df <- data.frame(y=y, x0=X0, A=A, S=S)
+df <- data.frame(y=y, x0=X0, F=F, S=S)
 write.table(df, file="data_lmm_simplest.txt", row.names=FALSE, col.names=FALSE, quote=FALSE)

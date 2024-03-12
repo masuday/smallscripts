@@ -13,8 +13,8 @@ stde <- sqrt(ve)
 
 # fixed effects
 b <- c(50,60,70,80)
-A <- as.factor(rep(1:na,length.out=N))
-X <- model.matrix(~ 0 + A)
+F <- as.factor(rep(1:na,length.out=N))
+X <- model.matrix(~ 0 + F)
 
 # random effects
 u <- rnorm(ns,mean=0,sd=stds)
@@ -30,7 +30,7 @@ y <- X %*% b + Z %*% u + e
 # computation using a package
 # install.packages("lme4")
 library(lme4)
-result <- lmer(y ~ 0 + A + (1|S))
+result <- lmer(y ~ 0 + F + (1|S))
 
 result
 summary(result)
@@ -45,5 +45,5 @@ result@u * result@theta
 # data frame
 #
 X0 <- model.matrix(y ~ 1)
-df <- data.frame(y=y, x0=X0, A=A, S=S)
+df <- data.frame(y=y, x0=X0, F=F, S=S)
 write.table(df, file="data_lmm_simplest.txt", row.names=FALSE, col.names=FALSE, quote=FALSE)
