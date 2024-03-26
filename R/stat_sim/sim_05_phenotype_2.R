@@ -50,8 +50,8 @@ for(curr_gen in 1:maxgen){
    dam <- c(dam, dam.prog)
    sex <- c(sex, sex.prog)
    gen <- c(gen, gen.prog)
-   u <- c(y, u.prog)
-   e <- c(y, e.prog)
+   u <- c(u, u.prog)
+   e <- c(e, e.prog)
    y <- c(y, y.prog)
 
    # inbreeding
